@@ -1,0 +1,48 @@
+﻿@model List<Blog.Web.UI.Models.Entity.Education>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EĞİTİM</h1>
+<hr />
+<a asp-action="Create" class="btn btn-primary">Okul Ekle</a>
+<p></p>
+<table class="table table-hover">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td><b>Okul</b><br />@Html.Raw(item.SchoolName)</td></tr>
+            <tr><td><b>Bölüm</b><br />@Html.Raw(item.SectionName)</td></tr>
+            <tr><td><b>Başlangıç Tarihi</b><br />@Html.Raw(item.DateOfStart.ToString("dd/MM/yyyy"))</td></tr>
+            <tr>
+                <td>
+                    <b>Bitiş Tarihi</b><br />@if (item.Status == true)
+                    {
+                        @Html.Raw("Devam Ediyor")
+                    }
+                    else
+                    {
+                        @Html.Raw(item.DateOfFinish)
+                    }
+                </td>
+            </tr>
+            @*<tr>
+                    <td>
+                        <b>Hala Devam Ediyor Mu ?</b><br />@if (item.Status == true)
+                        {
+                            @Html.Raw("Evet")
+                        }
+                        else
+                        {
+                            @Html.Raw(item.DateOfFinish + " tarihinde mezun oldu")
+                        }
+                    </td>
+                </tr>*@
+            <tr>
+                <td><a class="btn btn-warning" href="/Admin/Education/Edit/@item.ID">Düzenle</a>&nbsp;<a class="btn btn-warning" href="/Admin/Education/Delete/@item.ID">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

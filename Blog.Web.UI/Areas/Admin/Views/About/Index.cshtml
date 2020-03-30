@@ -1,0 +1,29 @@
+﻿@model List<Blog.Web.UI.Models.Entity.About>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>HAKKIMIZDA</h1>
+<hr />
+<a asp-action="Create" class="btn btn-primary">Ekle</a>
+<p></p>
+<table class="table table-hover">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td><b>Hakkında</b><br />@Html.Raw(item.Description)</td></tr>
+            <tr><td><b>Başlık</b><br />@Html.Raw(item.Title)</td></tr>
+            <tr><td><b>Adres Bilgisi</b><br />@Html.Raw(item.Address)</td></tr>
+            <tr><td><b>E-Mail</b><br />@Html.Raw(item.Email)</td></tr>
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="/Admin/About/Edit/@item.ID">Düzenle</a>&nbsp;
+                    <a class="btn btn-warning" href="/Admin/About/Delete/@item.ID">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

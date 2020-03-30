@@ -1,0 +1,70 @@
+﻿@model Blog.Web.UI.Models.Entity.About
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>DÜZENLE</h1>
+<hr />
+
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="ID" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label><b>Hakkında</b></label>
+        @*<input type="text" asp-for="Description" class="form-control" />*@
+        @*<span asp-validation-for="Description" class="text-danger"></span>*@
+        @Html.TextAreaFor(model => model.Description, 10, 10, htmlAttributes: new { @class = "ckeditor" })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label><b>Başlık</b></label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label><b>Adres</b></label>
+        @*<input type="text" asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>*@
+        @Html.TextAreaFor(model => model.Address, 10, 10, htmlAttributes: new { @class = "ckeditor" })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label><b>E Mail</b></label>
+        <input type="email" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Kaydet</button>
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Düzenle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Değişiklikler kaydedilsin mi ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    <input type="submit" value="Kaydet" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<p></p>
+<br />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
